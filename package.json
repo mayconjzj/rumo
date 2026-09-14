@@ -1,0 +1,32 @@
+{
+    "name": "calculadora-juros-compostos",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "eslint .",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "test": "vitest run"
+    },
+  "dependencies": {
+    "katex": "^0.16.22",
+    "next": "^15.5.0",
+        "react": "^19.1.0",
+        "react-dom": "^19.1.0"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.34.0",
+        "@types/node": "^22.15.0",
+        "@types/react": "^19.1.0",
+        "@types/react-dom": "^19.1.0",
+        "eslint": "^9.34.0",
+        "eslint-config-next": "^15.5.0",
+        "eslint-config-prettier": "^10.1.8",
+        "prettier": "^3.9.6",
+        "typescript": "^5.8.0",
+        "vitest": "^3.2.0"
+    }
+}
