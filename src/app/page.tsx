@@ -1,20 +1,10 @@
 import { CompoundInterestCalculator } from '@/components/CompoundInterestCalculator';
-import { ThemeToggle } from '@/components/ThemeToggle';
+import { SiteNavigation } from '@/components/SiteNavigation';
 
 export default function Home() {
     return (
         <main>
-            <header className="site-header">
-                <a className="brand" href="#inicio" aria-label="Rumo, início">
-                    <span>↗</span> rumo
-                </a>
-                <nav aria-label="Navegação principal">
-                    <a href="#calculadora">Calculadora</a>
-                    <a href="/preco-teto">Preço-teto</a>
-                    <a href="/como-funciona">Como funciona</a>
-                </nav>
-                <ThemeToggle />
-            </header>
+            <SiteNavigation />
             <section className="hero" id="inicio">
                 <p className="eyebrow">Invista com clareza</p>
                 <h1>
