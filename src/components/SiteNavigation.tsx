@@ -6,10 +6,10 @@ import { usePathname } from 'next/navigation';
 import { ThemeToggle } from '@/components/ThemeToggle';
 
 const links = [
-    { href: '/', label: 'Início', exact: true },
-    { href: '/#calculadora', label: 'Juros compostos', exact: false },
-    { href: '/preco-teto', label: 'Preço-teto', exact: false },
-    { href: '/como-funciona', label: 'Como funciona', exact: false },
+    { href: '/', label: 'Início' },
+    { href: '/#calculadora', label: 'Juros compostos' },
+    { href: '/preco-teto', label: 'Preço-teto' },
+    { href: '/como-funciona', label: 'Como funciona' },
 ];
 
 export function SiteNavigation() {
@@ -22,7 +22,11 @@ export function SiteNavigation() {
                 <span>↗</span> rumo
             </Link>
 
-            <nav className={menuOpen ? 'mobile-open' : undefined} aria-label="Navegação principal">
+            <nav
+                id="site-navigation"
+                className={menuOpen ? 'mobile-open' : undefined}
+                aria-label="Navegação principal"
+            >
                 {links.map((link) => {
                     const isCurrent =
                         link.href === '/'
