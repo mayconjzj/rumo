@@ -28,6 +28,7 @@ export interface CalculationResult {
     inflationLoss: number;
     realInterest: number;
     accumulatedInflation: number;
+    accumulatedReturn: number;
     monthlyWithdrawal: number;
     monthlyWithdrawalRate: number;
     projection: ProjectionPoint[];
