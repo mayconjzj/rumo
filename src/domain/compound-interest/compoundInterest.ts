@@ -48,6 +48,7 @@ export function calculateCompoundInterest(input: CalculationInput): CalculationR
     const realInterest = realBalance - realInvested;
     const monthlyWithdrawalRate = input.annualWithdrawalRate / 12 / 100;
     const monthlyWithdrawal = balance * monthlyWithdrawalRate;
+    const accumulatedReturn = invested > 0 ? ((balance - invested) / invested) * 100 : 0;
 
     return {
         finalBalance: balance,
@@ -57,6 +58,7 @@ export function calculateCompoundInterest(input: CalculationInput): CalculationR
         inflationLoss: balance - realFinalBalance,
         realInterest,
         accumulatedInflation,
+        accumulatedReturn,
         monthlyWithdrawal,
         monthlyWithdrawalRate,
         projection,
