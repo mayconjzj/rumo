@@ -240,16 +240,6 @@ export function CompoundInterestCalculator() {
                         <p>Lucro nominal em relação à soma do capital investido.</p>
                     </article>
                 </div>
-                {/* removed duplicate inflation metric */}
-                <article className="metric card hidden">
-                    <span>Inflação acumulada no período</span>
-                    <strong>{result ? formatPercent(result.accumulatedInflation * 100) : '—'}</strong>
-                    <p>
-                        {result
-                            ? `Diferença nominal e real: ${formatCurrency(result.inflationLoss)}`
-                            : '—'}
-                    </p>
-                </article>
                 <article className="card chart-card">
                     <div className="chart-heading">
                         <div>
