@@ -10,6 +10,8 @@ export function validateCalculation(input: CalculationInput): CalculationErrors 
         errors.periodicContribution = 'Informe um aporte válido.';
     if (!Number.isFinite(input.annualRate) || input.annualRate < 0 || input.annualRate > 100)
         errors.annualRate = 'Use uma taxa entre 0% e 100%.';
+    if (!Number.isFinite(input.inflationRate) || input.inflationRate < 0 || input.inflationRate > 100)
+        errors.inflationRate = 'Use uma inflação entre 0% e 100%.';
     if (!Number.isFinite(input.years) || input.years <= 0 || input.years > 100)
         errors.years = 'Informe um período entre 1 e 100 anos.';
     return errors;
