@@ -6,7 +6,9 @@ export interface CalculationInput {
     periodicContribution: number;
     annualRate: number;
     rateFrequency: RateFrequency;
-    inflationRate: number;\n    annualContributionIncrease: number;\n    annualWithdrawalRate: number;
+    inflationRate: number;
+    annualContributionIncrease: number;
+    annualWithdrawalRate: number;
     years: number;
     contributionFrequency: ContributionFrequency;
 }
@@ -25,6 +27,8 @@ export interface CalculationResult {
     realFinalBalance: number;
     inflationLoss: number;
     realInterest: number;
-    accumulatedInflation: number;\n    monthlyWithdrawal: number;\n    monthlyWithdrawalRate: number;
+    accumulatedInflation: number;
+    monthlyWithdrawal: number;
+    monthlyWithdrawalRate: number;
     projection: ProjectionPoint[];
 }
