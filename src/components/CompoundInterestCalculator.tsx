@@ -17,6 +17,8 @@ const initial: CalculationInput = {
     annualRate: 10,
     rateFrequency: 'yearly',
     inflationRate: 4,
+    annualContributionIncrease: 4,
+    annualWithdrawalRate: 3,
     years: 10,
     contributionFrequency: 'monthly',
 };
@@ -159,6 +161,22 @@ export function CompoundInterestCalculator() {
                     />
                 </div>
                 <Field
+                    label="Reajuste anual do aporte"
+                    value={input.annualContributionIncrease}
+                    error={errors.annualContributionIncrease}
+                    onChange={(value) => update('annualContributionIncrease', value)}
+                    suffix="%"
+                    step={0.1}
+                />
+                <Field
+                    label="Taxa anual de retirada estimada"
+                    value={input.annualWithdrawalRate}
+                    error={errors.annualWithdrawalRate}
+                    onChange={(value) => update('annualWithdrawalRate', value)}
+                    suffix="%"
+                    step={0.1}
+                />
+                <Field
                     label="Inflação anual estimada"
                     value={input.inflationRate}
                     error={errors.inflationRate}
@@ -197,6 +215,15 @@ export function CompoundInterestCalculator() {
                         <strong>{result ? formatCurrency(result.realInterest) : '—'}</strong>
                     </article>
                 </div>
+                <article className="metric card highlight">
+                    <span>Renda mensal estimada (0,25% do patrimônio ao mês por padrão)</span>
+                    <strong>{result ? formatCurrency(result.monthlyWithdrawal) : '—'}</strong>
+                    <p>
+                        {result
+                            ? `${formatPercent(result.monthlyWithdrawalRate * 100)} ao mês, com base em ${formatPercent(input.annualWithdrawalRate)} ao ano. Estimativa de retirada, não garantia contra risco de ruína.`
+                            : '—'}
+                    </p>
+                </article>
                 <article className="metric card">
                     <span>Inflação acumulada no período</span>
                     <strong>{result ? formatPercent(result.accumulatedInflation * 100) : '—'}</strong>
