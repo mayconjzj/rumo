@@ -1,9 +1,12 @@
 export type ContributionFrequency = 'monthly' | 'quarterly' | 'yearly';
+export type RateFrequency = 'monthly' | 'yearly';
 
 export interface CalculationInput {
     initialInvestment: number;
     periodicContribution: number;
     annualRate: number;
+    rateFrequency: RateFrequency;
+    inflationRate: number;
     years: number;
     contributionFrequency: ContributionFrequency;
 }
@@ -19,5 +22,9 @@ export interface CalculationResult {
     finalBalance: number;
     totalInvested: number;
     totalInterest: number;
+    realFinalBalance: number;
+    inflationLoss: number;
+    realInterest: number;
+    accumulatedInflation: number;
     projection: ProjectionPoint[];
 }
