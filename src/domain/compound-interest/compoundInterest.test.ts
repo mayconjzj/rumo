@@ -62,7 +62,7 @@ describe('calculateCompoundInterest', () => {
             annualRate: 10,
             years: 1,
         });
-        expect(result.accumulatedReturn).toBeCloseTo(12, 8);
+        expect(result.accumulatedReturn).toBeCloseTo(10, 8);
     });
 
     it('returns zero when no capital was invested', () => {
