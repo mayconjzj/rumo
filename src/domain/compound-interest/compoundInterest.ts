@@ -32,10 +32,13 @@ export function calculateCompoundInterest(input: CalculationInput): CalculationR
         if (month % contributionEvery === 0) {
             const contributionInInitialPurchasingPower =
                 input.periodicContribution / Math.pow(1 + monthlyInflation, month);
-            balance += input.periodicContribution;
-            realBalance += contributionInInitialPurchasingPower;
-            invested += input.periodicContribution;
-            realInvested += contributionInInitialPurchasingPower;
+            const annualIncreasePeriods = Math.floor((month - 1) / 12);
+            const contribution = input.periodicContribution * Math.pow(1 + input.annualContributionIncrease / 100, annualIncreasePeriods);
+            const realContribution = contribution / Math.pow(1 + monthlyInflation, month);
+            balance += contribution;
+            realBalance += realContribution;
+            invested += contribution;
+            realInvested += realContribution;
         }
         if (month % 12 === 0 || month === totalMonths) {
             projection.push({ month, invested, balance, interest: balance - invested });
@@ -44,7 +47,7 @@ export function calculateCompoundInterest(input: CalculationInput): CalculationR
 
     const accumulatedInflation = Math.pow(1 + monthlyInflation, totalMonths) - 1;
     const realFinalBalance = balance / Math.pow(1 + monthlyInflation, totalMonths);
-    const realInterest = realBalance - realInvested;
+    const realInterest = realBalance - realInvested;\n    const monthlyWithdrawalRate = input.annualWithdrawalRate / 12 / 100;\n    const monthlyWithdrawal = balance * monthlyWithdrawalRate;
 
     return {
         finalBalance: balance,
