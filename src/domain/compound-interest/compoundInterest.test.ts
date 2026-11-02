@@ -49,6 +49,7 @@ describe('calculateCompoundInterest', () => {
             periodicContribution: 100,
             annualContributionIncrease: 10,
             annualRate: 0,
+            years: 2,
         });
         expect(result.totalInvested).toBeCloseTo(1200 + 1320, 2);
     });
