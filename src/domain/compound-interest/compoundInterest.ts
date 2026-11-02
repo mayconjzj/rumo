@@ -31,7 +31,9 @@ export function calculateCompoundInterest(input: CalculationInput): CalculationR
         realBalance *= (1 + monthlyRate) / (1 + monthlyInflation);
         if (month % contributionEvery === 0) {
             const annualIncreasePeriods = Math.floor((month - 1) / 12);
-            const contribution = input.periodicContribution * Math.pow(1 + input.annualContributionIncrease / 100, annualIncreasePeriods);
+            const contribution =
+                input.periodicContribution *
+                Math.pow(1 + input.annualContributionIncrease / 100, annualIncreasePeriods);
             const realContribution = contribution / Math.pow(1 + monthlyInflation, month);
             balance += contribution;
             realBalance += realContribution;
