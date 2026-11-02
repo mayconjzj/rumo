@@ -30,10 +30,12 @@ export function calculateCompoundInterest(input: CalculationInput): CalculationR
         balance *= 1 + monthlyRate;
         realBalance *= (1 + monthlyRate) / (1 + monthlyInflation);
         if (month % contributionEvery === 0) {
+            const contributionInInitialPurchasingPower =
+                input.periodicContribution / Math.pow(1 + monthlyInflation, month);
             balance += input.periodicContribution;
-            realBalance += input.periodicContribution;
+            realBalance += contributionInInitialPurchasingPower;
             invested += input.periodicContribution;
-            realInvested += input.periodicContribution;
+            realInvested += contributionInInitialPurchasingPower;
         }
         if (month % 12 === 0 || month === totalMonths) {
             projection.push({ month, invested, balance, interest: balance - invested });
