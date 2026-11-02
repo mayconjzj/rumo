@@ -8,6 +8,8 @@ const baseInput = {
     annualRate: 12,
     rateFrequency: 'yearly' as const,
     inflationRate: 0,
+    annualContributionIncrease: 0,
+    annualWithdrawalRate: 3,
     years: 1,
     contributionFrequency: 'monthly' as const,
 };
@@ -38,6 +40,44 @@ describe('calculateCompoundInterest', () => {
         });
         expect(result.finalBalance).toBe(1200);
         expect(result.projection).toHaveLength(2);
+    });
+
+    it('increases contributions at each annual anniversary', () => {
+        const result = calculateCompoundInterest({
+            ...baseInput,
+            initialInvestment: 0,
+            periodicContribution: 100,
+            annualContributionIncrease: 10,
+            annualRate: 0,
+            years: 2,
+        });
+        expect(result.totalInvested).toBeCloseTo(1200 + 1320, 2);
+    });
+
+    it('calculates accumulated return relative to total invested capital', () => {
+        const result = calculateCompoundInterest({
+            ...baseInput,
+            initialInvestment: 1000,
+            periodicContribution: 0,
+            annualRate: 10,
+            years: 1,
+        });
+        expect(result.accumulatedReturn).toBeCloseTo(10, 8);
+    });
+
+    it('returns zero when no capital was invested', () => {
+        const result = calculateCompoundInterest({
+            ...baseInput,
+            initialInvestment: 0,
+            periodicContribution: 0,
+        });
+        expect(result.accumulatedReturn).toBe(0);
+    });
+
+    it('estimates monthly withdrawals as a share of the final balance', () => {
+        const result = calculateCompoundInterest(baseInput);
+        expect(result.monthlyWithdrawalRate).toBeCloseTo(0.0025, 10);
+        expect(result.monthlyWithdrawal).toBeCloseTo(result.finalBalance * 0.0025, 8);
     });
 
     it('reports the inflation-adjusted balance and accumulated inflation', () => {

@@ -10,6 +10,10 @@ export function validateCalculation(input: CalculationInput): CalculationErrors 
         errors.periodicContribution = 'Informe um aporte válido.';
     if (!Number.isFinite(input.annualRate) || input.annualRate < 0 || input.annualRate > 100)
         errors.annualRate = 'Use uma taxa entre 0% e 100%.';
+    if (!Number.isFinite(input.annualContributionIncrease) || input.annualContributionIncrease < 0 || input.annualContributionIncrease > 100)
+        errors.annualContributionIncrease = 'Use um reajuste anual entre 0% e 100%.';
+    if (!Number.isFinite(input.annualWithdrawalRate) || input.annualWithdrawalRate < 0 || input.annualWithdrawalRate > 100)
+        errors.annualWithdrawalRate = 'Use uma taxa de retirada anual entre 0% e 100%.';
     if (!Number.isFinite(input.inflationRate) || input.inflationRate < 0 || input.inflationRate > 100)
         errors.inflationRate = 'Use uma inflação entre 0% e 100%.';
     if (!Number.isFinite(input.years) || input.years <= 0 || input.years > 100)
