@@ -54,6 +54,26 @@ describe('calculateCompoundInterest', () => {
         expect(result.totalInvested).toBeCloseTo(1200 + 1320, 2);
     });
 
+    it('calculates accumulated return relative to total invested capital', () => {
+        const result = calculateCompoundInterest({
+            ...baseInput,
+            initialInvestment: 1000,
+            periodicContribution: 0,
+            annualRate: 10,
+            years: 1,
+        });
+        expect(result.accumulatedReturn).toBeCloseTo(12, 8);
+    });
+
+    it('returns zero when no capital was invested', () => {
+        const result = calculateCompoundInterest({
+            ...baseInput,
+            initialInvestment: 0,
+            periodicContribution: 0,
+        });
+        expect(result.accumulatedReturn).toBe(0);
+    });
+
     it('estimates monthly withdrawals as a share of the final balance', () => {
         const result = calculateCompoundInterest(baseInput);
         expect(result.monthlyWithdrawalRate).toBeCloseTo(0.0025, 10);
